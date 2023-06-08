@@ -11,12 +11,12 @@ namespace MvcExamenFinalConciertosJPL.Services
         private MediaTypeWithQualityHeaderValue Header;
         private string UrlApi;
 
-        public ServicesEventos(IConfiguration configuration)
+        public ServicesEventos(IConfiguration configuration, KeysModel model)
         {
             this.Header =
                 new MediaTypeWithQualityHeaderValue("application/json");
             this.UrlApi =
-                configuration.GetValue<string>("ApiUrls:ApiConciertos");
+                model.ApiConciertos;
         }
 
         private async Task<T> CallApiAsync<T>(string request)

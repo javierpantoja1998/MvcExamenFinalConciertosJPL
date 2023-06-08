@@ -1,5 +1,6 @@
 ﻿using Amazon.S3;
 using Amazon.S3.Model;
+using MvcExamenFinalConciertosJPL.Models;
 
 namespace MvcExamenFinalConciertosJPL.Services
 {
@@ -13,10 +14,9 @@ namespace MvcExamenFinalConciertosJPL.Services
             private IAmazonS3 ClientS3;
 
             public ServiceStoragesS3(IConfiguration configuration
-                , IAmazonS3 clientS3)
+                , IAmazonS3 clientS3, KeysModel model )
             {
-                this.BucketName = configuration.GetValue<string>
-                    ("AWS:BucketName");
+                this.BucketName = model.BucketUrl;
                 this.ClientS3 = clientS3;
             }
 

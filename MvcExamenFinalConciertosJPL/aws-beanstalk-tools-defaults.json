@@ -1,0 +1,20 @@
+
+{
+    "region" : "us-east-1",
+    "configuration" : "Debug",
+    "framework"     : "net6.0",
+    "self-contained" : false,
+    "application"    : "MvcExamenFinalConciertosJPL",
+    "environment"    : "MvcExamenFinalConciertosJPL-dev",
+    "enable-xray"    : false,
+    "enhanced-health-type" : "basic",
+    "additional-options"   : "\"aws:autoscaling:launchconfiguration,SecurityGroups\"=\"sg-0c3d77f0c2fe273ba\";\"aws:ec2:vpc,Subnets\"=\"subnet-055a1bc9eca13defb\"",
+    "solution-stack"       : "64bit Amazon Linux 2 v2.5.4 running .NET Core",
+    "environment-type"     : "SingleInstance",
+    "cname"                : "mvcexamenfinalconciertosjpl-dev",
+    "instance-type"        : "t3a.medium",
+    "key-pair"             : "keys-linux-aws-webserver",
+    "instance-profile"     : "aws-elasticbeanstalk-ec2-role",
+    "service-role"         : "aws-elasticbeanstalk-service-role",
+    "proxy-server"         : "nginx"
+}

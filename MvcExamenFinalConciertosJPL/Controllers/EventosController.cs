@@ -10,10 +10,10 @@ namespace MvcExamenFinalConciertosJPL.Controllers
         private ServiceStoragesS3 serviceStorages1;
         private string BucketUrl;
 
-        public EventosController(ServicesEventos service, IConfiguration configuration, ServiceStoragesS3 serviceStorages)
+        public EventosController(ServicesEventos service, IConfiguration configuration, ServiceStoragesS3 serviceStorages, KeysModel model)
         {
             this.service = service;
-            this.BucketUrl = configuration.GetValue<string>("AWS:BucketUrl");
+            this.BucketUrl = model.BucketUrl;
             this.serviceStorages1 = serviceStorages;
         }
 
