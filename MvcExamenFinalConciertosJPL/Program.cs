@@ -1,3 +1,4 @@
+using Amazon.S3;
 using MvcExamenFinalConciertosJPL.Services;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -5,6 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddTransient<ServicesEventos>();
+builder.Services.AddAWSService<IAmazonS3>();
 builder.Services.AddTransient<ServiceStoragesS3>();
 
 var app = builder.Build();

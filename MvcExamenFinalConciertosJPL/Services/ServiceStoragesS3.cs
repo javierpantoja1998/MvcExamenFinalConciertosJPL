@@ -5,14 +5,14 @@ namespace MvcExamenFinalConciertosJPL.Services
 {
     public class ServiceStoragesS3
     {
-        public class ServiceStorageS3
-        {
+        
             //EL NOMBRE DEL BUCKET LO INCLUIREMOS DENTRO DE 
             //APPSETTINGS.JSON
             private string BucketName;
             //S3 TRABAJA CON UNA INTERFACE LLAMADA IAmazonS3
             private IAmazonS3 ClientS3;
-            public ServiceStorageS3(IConfiguration configuration
+
+            public ServiceStoragesS3(IConfiguration configuration
                 , IAmazonS3 clientS3)
             {
                 this.BucketName = configuration.GetValue<string>
@@ -77,7 +77,7 @@ namespace MvcExamenFinalConciertosJPL.Services
                     await this.ClientS3.GetObjectAsync(this.BucketName, fileName);
                 return response.ResponseStream;
             }
-        }
+        
 
     }
 }

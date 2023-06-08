@@ -7,14 +7,14 @@ namespace MvcExamenFinalConciertosJPL.Controllers
     public class EventosController : Controller
     {
         private ServicesEventos service;
-        private ServiceStoragesS3 serviceStorages;
+        private ServiceStoragesS3 serviceStorages1;
         private string BucketUrl;
 
         public EventosController(ServicesEventos service, IConfiguration configuration, ServiceStoragesS3 serviceStorages)
         {
             this.service = service;
             this.BucketUrl = configuration.GetValue<string>("AWS:BucketUrl");
-            this.serviceStorages = serviceStorages;
+            this.serviceStorages1 = serviceStorages;
         }
 
         public async Task<IActionResult> Index()
@@ -43,9 +43,13 @@ namespace MvcExamenFinalConciertosJPL.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Evento evento)
+        public async Task<IActionResult> Create(Evento evento, IFormFile file)
         {
-            await this.service.CreateEvento(evento);
+            using (Stream stream = file.OpenReadStream())
+            {
+                await this.serviceStorages1.UploadFileAsync(file.FileName, stream);
+            }
+            await this.service.CreateEventoAsync(evento.Nombre, evento.Artista,evento.IdCategoria, file.FileName);
             return RedirectToAction("Index");
         }
     }

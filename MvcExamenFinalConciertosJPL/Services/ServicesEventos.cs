@@ -61,13 +61,21 @@ namespace MvcExamenFinalConciertosJPL.Services
             return evento;
         }
 
-        public async Task CreateEvento(Evento evento)
+        public async Task CreateEventoAsync(string nombre, string artista, int idcategoria, string imagen)
         {
             using (HttpClient client = new HttpClient())
             {
                 string request = "api/Eventos";
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Accept.Add(this.Header);
+
+                Evento evento = new Evento
+                {
+                    Nombre = nombre,
+                    Artista = artista,
+                    IdCategoria = idcategoria,
+                    Imagen = imagen
+                };
                 string jsonEvento = JsonConvert.SerializeObject(evento);
                 StringContent content =
                     new StringContent(jsonEvento, Encoding.UTF8, "application/json");
