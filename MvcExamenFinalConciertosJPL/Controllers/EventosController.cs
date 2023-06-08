@@ -7,12 +7,14 @@ namespace MvcExamenFinalConciertosJPL.Controllers
     public class EventosController : Controller
     {
         private ServicesEventos service;
+        private ServiceStoragesS3 serviceStorages;
         private string BucketUrl;
 
-        public EventosController(ServicesEventos service, IConfiguration configuration)
+        public EventosController(ServicesEventos service, IConfiguration configuration, ServiceStoragesS3 serviceStorages)
         {
             this.service = service;
             this.BucketUrl = configuration.GetValue<string>("AWS:BucketUrl");
+            this.serviceStorages = serviceStorages;
         }
 
         public async Task<IActionResult> Index()
